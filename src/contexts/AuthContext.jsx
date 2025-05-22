@@ -74,7 +74,9 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const signUp = async (email, password) => {
+  const DRIP_FUNCTION_URL = import.meta.env.VITE_DRIP_FUNCTION_URL
+
+  const signUp = async (email, password, fullName) => {
     try {
       console.log('Starting sign-up process for:', email);
       
@@ -96,6 +98,7 @@ export const AuthProvider = ({ children }) => {
         options: {
           emailRedirectTo: `${window.location.origin}/auth/callback`,
           data: {
+            full_name: fullName,
             email_confirm: false
           }
         }
@@ -111,6 +114,25 @@ export const AuthProvider = ({ children }) => {
       if (!data.user) {
         console.error('No user data returned');
         throw new Error('Failed to create user account');
+      }
+
+      if (DRIP_FUNCTION_URL) {
+        try {
+          await fetch(
+            DRIP_FUNCTION_URL,
+            {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                email,
+                name: fullName,
+                sourceApp: 'Prompt Array'
+              })
+            }
+          )
+        } catch (syncError) {
+          console.error('Drip sync error:', syncError)
+        }
       }
 
       // Check if email confirmation is required
