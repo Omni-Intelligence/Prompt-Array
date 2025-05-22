@@ -14,10 +14,12 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const fullNameInput = e.target.querySelector('#fullName');
       const emailInput = e.target.querySelector('#email');
       const passwordInput = e.target.querySelector('#password');
       const confirmPasswordInput = e.target.querySelector('#confirmPassword');
 
+      const fullName = fullNameInput?.value;
       const email = emailInput?.value;
       const password = passwordInput?.value;
       const confirmPassword = confirmPasswordInput?.value;
@@ -33,7 +35,7 @@ const Register = () => {
       }
 
       console.log('Starting registration for:', email);
-      const { data, requiresEmailConfirmation } = await signUp(email, password);
+      const { data, requiresEmailConfirmation } = await signUp(email, password, fullName);
       
       if (requiresEmailConfirmation) {
         // Store email for resend functionality

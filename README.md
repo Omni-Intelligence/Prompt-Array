@@ -150,6 +150,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
    - `VITE_SUPABASE_ANON_KEY`
    - `VITE_STRIPE_PUBLIC_KEY`
    - `VITE_STRIPE_PRICE_ID`
+   - `DRIP_ACCOUNT_ID`
+   - `DRIP_API_TOKEN`
+   - `VITE_DRIP_FUNCTION_URL`
 
 Note: Never commit sensitive API keys to the repository. Always use environment variables for sensitive data.
 

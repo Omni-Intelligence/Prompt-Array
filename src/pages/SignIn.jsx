@@ -24,7 +24,7 @@ const SignIn = () => {
     
     try {
       if (isSignUp) {
-        await signUp(formData.email, formData.password);
+        await signUp(formData.email, formData.password, undefined);
         navigate(redirectPath);
       } else {
         await signIn(formData.email, formData.password);
