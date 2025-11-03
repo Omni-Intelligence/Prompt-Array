@@ -127,6 +127,8 @@ export function CTASection() {
           muted
           loop
           playsInline
+          preload="auto"
+          webkit-playsinline="true"
           className="absolute inset-0 w-full h-full object-cover opacity-40 dark:opacity-20"
         >
           <source src="/videos/social_sam.mckay.edna_Network_of_nodes_connected_by_glowing_lines_ea_68369123-6a21-4b9e-8697-722a42766ab7_2_compressed.mp4" type="video/mp4" />

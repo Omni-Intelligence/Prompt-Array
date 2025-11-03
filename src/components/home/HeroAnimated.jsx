@@ -51,6 +51,8 @@ export function HeroAnimated() {
           muted
           loop
           playsInline
+          preload="auto"
+          webkit-playsinline="true"
           className="absolute inset-0 w-full h-full object-cover opacity-40 dark:opacity-30"
         >
           <source src="/videos/social_sam.mckay.edna_group_working_in_an_office_being_productive_eq_9518032e-aa42-4570-a5ab-56a20e44a7a7_0 (1)_compressed.mp4" type="video/mp4" />
