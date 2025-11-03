@@ -1,20 +1,11 @@
 import { Link } from "react-router-dom";
-import UserNav from "@/components/UserNav";
+import { UserNav } from "@/components/navigation";
 import { useAuth } from "@/contexts/AuthContext";
-import { useSubscription } from "@/hooks/useSubscription";
 import { BackgroundElements } from "./BackgroundElements";
 import { FEATURES } from '@/config/features';
 
 export function HomeLayout({ children }) {
   const { user } = useAuth();
-  const { isSubscribed, isLoading, subscription } = useSubscription();
-
-  console.log('HomeLayout Debug:', {
-    user: !!user,
-    userId: user?.id,
-    isSubscribed,
-    isLoading
-  });
 
   return (
     <div className="relative min-h-screen bg-white dark:bg-gray-950">
@@ -35,20 +26,6 @@ export function HomeLayout({ children }) {
             </div>
 
             <div className="flex items-center space-x-8">
-              {user && !isLoading && !isSubscribed && (
-                <>
-                  {/* Debug element */}
-                  <div className="hidden">
-                    User: {!!user ? 'yes' : 'no'}, 
-                    Subscribed: {isSubscribed ? 'yes' : 'no'}
-                  </div>
-                  {FEATURES.PAYMENTS_ENABLED && (
-                    <Link to="/pricing" className="text-base text-gray-600 dark:text-gray-300 hover:text-[#9333EA] transition-colors">
-                      Pricing
-                    </Link>
-                  )}
-                </>
-              )}
               {!user ? (
                 <>
                   <Link to="/signup" className="text-base text-gray-600 dark:text-gray-300 hover:text-[#9333EA] transition-colors">

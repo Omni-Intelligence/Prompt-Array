@@ -25,8 +25,5 @@ enabled = false
 [auth]
 enabled = false
 
-[auth.email]
-enabled = false
-
 [edge_runtime]
 enabled = true

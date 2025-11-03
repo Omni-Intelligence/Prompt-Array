@@ -12,7 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { formatDistanceToNow } from 'date-fns';
-import { useForkPrompt } from '@/hooks/useCommunity';
+import { useForkPrompt } from '@/hooks/community';
 
 const CommunityPromptCard = ({ prompt, onShare, onFork, onClick }) => {
   const { mutate: forkPrompt, isLoading: isForking } = useForkPrompt();
@@ -124,4 +124,4 @@ const CommunityPromptCard = ({ prompt, onShare, onFork, onClick }) => {
   );
 };
 
-export default CommunityPromptCard;
+export { CommunityPromptCard };

@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { usePrompts } from '@/hooks/usePrompts';
+import { usePrompts } from '@/hooks/prompts';
 import { toggleFavorite } from '@/services/favorites';
 import { useQuery } from "@tanstack/react-query";
 import { getTemplates } from '@/services/templates';
@@ -180,4 +180,4 @@ const PromptsList = ({ onPromptClick }) => {
   );
 };
 
-export default PromptsList;
+export { PromptsList };

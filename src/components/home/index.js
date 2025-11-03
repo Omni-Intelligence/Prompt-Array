@@ -1,8 +1,7 @@
-export { Hero } from './Hero';
-export { Features } from './Features';
+export { Header } from './Header';
+export { Logo } from './Logo';
+export { HeroAnimated } from './HeroAnimated';
+export { FeaturesGrid } from './FeaturesGrid';
 export { HowItWorks } from './HowItWorks';
-export { UseCases } from './UseCases';
-export { Community } from './Community';
-export { Learning } from './Learning';
-export { GetStarted } from './GetStarted';
+export { FAQSection, CTASection } from './FAQSection';
 export { Footer } from './Footer';

@@ -1,26 +1,15 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Toaster } from "sonner";
-import { navItems } from "./nav-items";
+import { getNavItems } from "./nav-items";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
-import SignIn from "./pages/SignIn";
-import Register from "./pages/Register";
-import GroupDetail from "./pages/GroupDetail";
-import PromptDetail from "./pages/PromptDetail";
-import ChainDetail from "./pages/ChainDetail";
-import CreateChain from "./pages/CreateChain";
-import ViewChain from "./pages/ViewChain";
-import Index from "./pages/Index";
-import Dashboard from "./pages/Dashboard";
-import HomePage from "./pages/Home";
-import Account from "./pages/Account";
-import PricingPage from "./pages/Pricing";
-import PaymentSuccess from "./pages/PaymentSuccess";
-import Techniques from "./pages/Techniques";
-import Chains from "./pages/Chains";
-import RegisterSuccess from "./pages/RegisterSuccess";
-import ResetPassword from "./pages/ResetPassword";
-import WhyFree from "./pages/WhyFree";
+import { ErrorBoundary } from "./components/common";
+import { 
+  SignIn, Register, RegisterSuccess, ResetPassword,
+  Home, Pricing, Techniques, WhyFree,
+  Index, Dashboard, Account, PaymentSuccess,
+  PromptDetail, Groups, GroupDetail, Chains, ChainDetail, CreateChain, ViewChain
+} from "@/pages";
 
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center min-h-screen">
@@ -48,12 +37,12 @@ const AppRoutes = () => {
   return (
     <Routes>
       {/* Public routes */}
-      <Route path="/" element={<HomePage />} />
+      <Route path="/" element={<Home />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<Register />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/why-free" element={<WhyFree />} />
-      <Route path="/pricing" element={<PricingPage />} />
+      <Route path="/pricing" element={<Pricing />} />
       <Route path="/payment-success" element={<PaymentSuccess />} />
       <Route path="/register-success" element={<RegisterSuccess />} />
 
@@ -70,7 +59,7 @@ const AppRoutes = () => {
         <Route path="prompts/:id" element={<PromptDetail />} />
 
         {/* Dynamic routes from navItems */}
-        {navItems.map((item) => {
+        {getNavItems().filter(item => item.component && item.external !== true).map((item) => {
           if (item.dynamicRoutes === false) {
             return (
               <Route
@@ -108,12 +97,14 @@ const AppRoutes = () => {
 const App = () => {
   return (
     <AuthProvider>
-      <div className="min-h-screen bg-background relative">
-        <Toaster />
-        <BrowserRouter>
-          <AppRoutes />
-        </BrowserRouter>
-      </div>
+      <ErrorBoundary>
+        <div className="min-h-screen bg-background relative">
+          <Toaster />
+          <BrowserRouter>
+            <AppRoutes />
+          </BrowserRouter>
+        </div>
+      </ErrorBoundary>
     </AuthProvider>
   );
 };

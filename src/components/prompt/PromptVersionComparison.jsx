@@ -56,4 +56,4 @@ const PromptVersionComparison = ({ version1, version2, onClose }) => {
   );
 };
 
-export default PromptVersionComparison;
+export { PromptVersionComparison };
