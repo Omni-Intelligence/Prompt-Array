@@ -132,21 +132,6 @@ export function CTASection() {
 
   return (
     <section className="relative w-full overflow-hidden py-24 md:py-32 lg:py-40">
-      {/* Background Video */}
-      <div className="absolute inset-0 overflow-hidden">
-        <video
-          ref={videoRef}
-          muted
-          loop
-          playsInline
-          preload="auto"
-          className="absolute inset-0 w-full h-full object-cover opacity-40 dark:opacity-20"
-          style={{ WebkitPlaysinline: 'true' }}
-          defaultMuted
-          src="/videos/social_sam.mckay.edna_Network_of_nodes_connected_by_glowing_lines_ea_68369123-6a21-4b9e-8697-722a42766ab7_2_compressed.mp4"
-        />
-      </div>
-
       {/* Animated Shapes */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -191,9 +176,6 @@ export function CTASection() {
         />
       </div>
 
-      {/* Dark Overlay for Text Readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/50" />
-
       {/* Content */}
       <div className="container relative mx-auto px-4">
         <motion.div
@@ -226,19 +208,44 @@ export function CTASection() {
               </Link>
               <Link
                 to="/app/dashboard"
-                className="px-8 py-3.5 rounded-lg text-lg font-semibold border-2 border-foreground bg-foreground/10 text-foreground hover:bg-foreground/20 transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm"
+                className="px-8 py-3.5 rounded-lg text-lg font-semibold border-2 border-brand/30 text-brand hover:bg-brand/5 transition-all duration-300 hover:-translate-y-1 dark:border-brand/50 dark:hover:bg-brand/10"
               >
                 Learn How It Works
               </Link>
             </div>
           </div>
 
+          {/* Video Container with Border and Rounded Edges */}
+          <motion.div
+            className="w-full max-w-4xl"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <div className="relative rounded-2xl overflow-hidden border-4 border-brand/30 shadow-2xl dark:border-brand/50">
+              <video
+                ref={videoRef}
+                muted
+                loop
+                playsInline
+                preload="auto"
+                className="w-full h-auto aspect-video object-cover"
+                style={{ WebkitPlaysinline: 'true' }}
+                defaultMuted
+                src="/videos/social_sam.mckay.edna_Network_of_nodes_connected_by_glowing_lines_ea_68369123-6a21-4b9e-8697-722a42766ab7_2_compressed.mp4"
+              />
+              {/* Overlay gradient for depth */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+            </div>
+          </motion.div>
+
           {/* Feature Tags */}
           <div className="flex flex-wrap justify-center gap-3 mt-8">
             {['100% Free', 'No Credit Card', 'Full Features'].map((tag) => (
               <div
                 key={tag}
-                className="px-4 py-2 rounded-full bg-white/10 border border-white/30 text-sm font-medium text-white backdrop-blur-sm"
+                className="px-4 py-2 rounded-full bg-brand/5 border border-brand/20 text-sm font-medium text-brand dark:bg-brand/10 dark:border-brand/40"
               >
                 ✓ {tag}
               </div>

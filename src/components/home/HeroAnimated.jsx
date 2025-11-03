@@ -56,30 +56,12 @@ export function HeroAnimated() {
 
   return (
     <section className="hero relative w-full overflow-hidden py-24 md:py-32 lg:py-40">
-      {/* Hero Background Video */}
-      <div className="absolute inset-0 overflow-hidden">
-        <video
-          ref={videoRef}
-          muted
-          loop
-          playsInline
-          preload="auto"
-          className="absolute inset-0 w-full h-full object-cover opacity-40 dark:opacity-30"
-          style={{ WebkitPlaysinline: 'true' }}
-          defaultMuted
-          src="/videos/social_sam.mckay.edna_group_working_in_an_office_being_productive_eq_9518032e-aa42-4570-a5ab-56a20e44a7a7_0%20(1)_compressed.mp4"
-        />
-      </div>
-
       {/* Subtle Animated Shapes */}
       <div className="absolute inset-0 overflow-hidden">
         {shapes.map((shape, index) => (
           <FloatingShape key={index} {...shape} />
         ))}
       </div>
-
-      {/* Dark Overlay for Text Readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/30 to-background/50" />
 
       {/* Content */}
       <div className="container relative mx-auto px-4">
@@ -120,6 +102,30 @@ export function HeroAnimated() {
               </Link>
             </div>
           </div>
+
+          {/* Video Container with Border and Rounded Edges */}
+          <motion.div
+            className="w-full max-w-4xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <div className="relative rounded-2xl overflow-hidden border-4 border-brand/30 shadow-2xl dark:border-brand/50">
+              <video
+                ref={videoRef}
+                muted
+                loop
+                playsInline
+                preload="auto"
+                className="w-full h-auto aspect-video object-cover"
+                style={{ WebkitPlaysinline: 'true' }}
+                defaultMuted
+                src="/videos/social_sam.mckay.edna_group_working_in_an_office_being_productive_eq_9518032e-aa42-4570-a5ab-56a20e44a7a7_0%20(1)_compressed.mp4"
+              />
+              {/* Overlay gradient for depth */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+            </div>
+          </motion.div>
 
           {/* Feature Tags */}
           <div className="flex flex-wrap justify-center gap-3 mt-8">
