@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 
 const FloatingShape = ({ delay, gradient, style, size }) => {
   return (
@@ -27,6 +28,8 @@ const FloatingShape = ({ delay, gradient, style, size }) => {
 };
 
 export function HeroAnimated() {
+  const videoRef = useRef(null);
+
   const shapes = [
     {
       gradient: 'radial-gradient(circle, rgba(102, 84, 245, 0.3) 0%, rgba(102, 84, 245, 0.1) 100%)',
@@ -42,21 +45,30 @@ export function HeroAnimated() {
     },
   ];
 
+  useEffect(() => {
+    // Manually trigger video play for iOS Safari
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.log('Video autoplay failed:', error);
+      });
+    }
+  }, []);
+
   return (
     <section className="hero relative w-full overflow-hidden py-24 md:py-32 lg:py-40">
       {/* Hero Background Video */}
       <div className="absolute inset-0 overflow-hidden">
         <video
-          autoPlay
+          ref={videoRef}
           muted
           loop
           playsInline
           preload="auto"
-          webkit-playsinline="true"
           className="absolute inset-0 w-full h-full object-cover opacity-40 dark:opacity-30"
-        >
-          <source src="/videos/social_sam.mckay.edna_group_working_in_an_office_being_productive_eq_9518032e-aa42-4570-a5ab-56a20e44a7a7_0 (1)_compressed.mp4" type="video/mp4" />
-        </video>
+          style={{ WebkitPlaysinline: 'true' }}
+          defaultMuted
+          src="/videos/social_sam.mckay.edna_group_working_in_an_office_being_productive_eq_9518032e-aa42-4570-a5ab-56a20e44a7a7_0%20(1)_compressed.mp4"
+        />
       </div>
 
       {/* Subtle Animated Shapes */}

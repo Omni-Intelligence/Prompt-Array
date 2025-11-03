@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 
 const features = [
   {
@@ -118,21 +119,32 @@ export function FAQSection() {
 }
 
 export function CTASection() {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    // Manually trigger video play for iOS Safari
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.log('Video autoplay failed:', error);
+      });
+    }
+  }, []);
+
   return (
     <section className="relative w-full overflow-hidden py-24 md:py-32 lg:py-40">
       {/* Background Video */}
       <div className="absolute inset-0 overflow-hidden">
         <video
-          autoPlay
+          ref={videoRef}
           muted
           loop
           playsInline
           preload="auto"
-          webkit-playsinline="true"
           className="absolute inset-0 w-full h-full object-cover opacity-40 dark:opacity-20"
-        >
-          <source src="/videos/social_sam.mckay.edna_Network_of_nodes_connected_by_glowing_lines_ea_68369123-6a21-4b9e-8697-722a42766ab7_2_compressed.mp4" type="video/mp4" />
-        </video>
+          style={{ WebkitPlaysinline: 'true' }}
+          defaultMuted
+          src="/videos/social_sam.mckay.edna_Network_of_nodes_connected_by_glowing_lines_ea_68369123-6a21-4b9e-8697-722a42766ab7_2_compressed.mp4"
+        />
       </div>
 
       {/* Animated Shapes */}
