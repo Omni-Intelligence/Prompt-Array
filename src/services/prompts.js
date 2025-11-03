@@ -28,9 +28,7 @@ export const createPrompt = async (promptData) => {
       is_public: promptData.isPublic !== undefined ? promptData.isPublic : false,
       version: 1,
       user_id: user.id,
-      team_id: promptData.teamId || null,
-      group_id: promptData.groupId === 'none' ? null : promptData.groupId,
-      change_description: promptData.changeDescription || null
+      group_id: promptData.groupId === 'none' ? null : promptData.groupId
     };
 
     console.log('Attempting to insert prompt with data:', promptInsertData);
@@ -383,10 +381,25 @@ export const deletePrompt = async (promptId) => {
 export const getTemplates = async () => {
   try {
     console.log('Fetching templates...');
+    // Simplified query without joins to avoid RLS recursion
     const { data, error } = await supabase
       .from('prompts')
-      .select('*')
+      .select(`
+        id,
+        title,
+        content,
+        description,
+        tags,
+        is_public,
+        is_template,
+        template_category,
+        version,
+        created_at,
+        updated_at,
+        user_id
+      `)
       .eq('is_template', true)
+      .is('deleted_at', null)
       .order('template_category', { ascending: true });
 
     if (error) {

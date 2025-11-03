@@ -8,7 +8,17 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "db:start": "npx supabase start",
+    "db:stop": "npx supabase stop",
+    "db:reset": "npx supabase db reset",
+    "db:push": "npx supabase db push",
+    "db:status": "npx supabase status",
+    "db:studio": "npx supabase studio",
+    "db:shell": "npx supabase db shell",
+    "db:dump": "npx supabase db dump -f backup_$(date +%Y%m%d_%H%M%S).sql",
+    "db:types": "npx supabase gen types typescript --local > src/types/database.types.ts",
+    "db:types:remote": "npx supabase gen types typescript --project-ref $SUPABASE_PROJECT_REF > src/types/database.types.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.6.0",

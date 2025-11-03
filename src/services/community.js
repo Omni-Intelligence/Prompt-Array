@@ -6,12 +6,26 @@ const PROMPT_CENTRAL_USER_ID = 'e52e5b4a-00a3-4385-b315-00f0a8d3e000';
 export const getCommunityPrompts = async ({ filter = 'latest', searchQuery = '' }) => {
   try {
     console.log('Fetching community prompts with:', { filter, searchQuery });
-    
-    // Get public prompts from the prompt_details_v view
+
+    // Get public prompts - simplified query without user_profiles join
     let query = supabase
-      .from('prompt_details_v')
-      .select('*')
-      .eq('is_public', true);
+      .from('prompts')
+      .select(`
+        id,
+        title,
+        content,
+        description,
+        tags,
+        is_public,
+        is_template,
+        template_category,
+        version,
+        created_at,
+        updated_at,
+        user_id
+      `)
+      .eq('is_public', true)
+      .is('deleted_at', null);
 
     // Apply filter
     switch (filter) {
@@ -36,7 +50,7 @@ export const getCommunityPrompts = async ({ filter = 'latest', searchQuery = '' 
     let filteredPrompts = prompts;
     if (searchQuery) {
       const searchLower = searchQuery.toLowerCase();
-      filteredPrompts = prompts.filter(prompt => 
+      filteredPrompts = prompts.filter(prompt =>
         prompt.title?.toLowerCase().includes(searchLower) ||
         prompt.description?.toLowerCase().includes(searchLower)
       );
@@ -46,8 +60,8 @@ export const getCommunityPrompts = async ({ filter = 'latest', searchQuery = '' 
       ...prompt,
       author: {
         id: prompt.user_id,
-        full_name: prompt.user_id === PROMPT_CENTRAL_USER_ID ? 'Prompt Array' : (prompt.author_name || 'Anonymous'),
-        avatar_url: prompt.user_id === PROMPT_CENTRAL_USER_ID ? 'https://promptarray.com/logo.png' : prompt.author_avatar
+        full_name: prompt.user_id === PROMPT_CENTRAL_USER_ID ? 'Prompt Array' : 'Anonymous',
+        avatar_url: prompt.user_id === PROMPT_CENTRAL_USER_ID ? 'https://promptarray.com/logo.png' : null
       }
     }));
   } catch (error) {

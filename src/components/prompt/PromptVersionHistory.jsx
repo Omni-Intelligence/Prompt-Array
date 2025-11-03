@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import PromptVersionComparison from './PromptVersionComparison';
+import { PromptVersionComparison } from './PromptVersionComparison';
 
 const PromptVersionHistory = ({ versions, currentVersion, onRestoreVersion }) => {
   const [selectedVersions, setSelectedVersions] = React.useState([]);
@@ -131,4 +131,4 @@ const PromptVersionHistory = ({ versions, currentVersion, onRestoreVersion }) =>
   );
 };
 
-export default PromptVersionHistory;
+export { PromptVersionHistory };

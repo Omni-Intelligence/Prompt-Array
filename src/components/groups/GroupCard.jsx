@@ -21,8 +21,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { useGroups } from '@/hooks/useGroups';
-import EditGroupSheet from '@/components/EditGroupSheet';
+import { useGroups } from '@/hooks/groups';
+import { EditGroupSheet } from '@/components/modals';
 
 const GroupCard = ({ group }) => {
   const navigate = useNavigate();
@@ -127,4 +127,4 @@ const GroupCard = ({ group }) => {
   );
 };
 
-export default GroupCard;
+export { GroupCard };

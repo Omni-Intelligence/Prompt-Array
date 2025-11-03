@@ -26,4 +26,4 @@ const QuickAccessGroups = ({ groups }) => {
   );
 };
 
-export default QuickAccessGroups;
+export { QuickAccessGroups };

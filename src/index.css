@@ -1,51 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
+    /* Enterprise DNA Brand Colors - Updated */
+    --brand: 262 80% 50%;
+    --brand-blue: 262 80% 50%;
+    --brand-orange: 39 100% 50%;
+    --brand-yellow: 42 100% 50%;
+    --brand-pink: 343 71% 54%;
+    --success: 142 71% 45%;
+    --warning: 38 92% 50%;
+    
+    /* Base Colors - Light Mode */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 0 0% 5%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 5%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 262 83.3% 57.8%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 262 83.3% 57.8%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --popover-foreground: 0 0% 5%;
+    
+    /* Primary - Enterprise DNA Blue */
+    --primary: 262 80% 50%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary */
+    --secondary: 39 100% 50%;
+    --secondary-foreground: 0 0% 100%;
+    
+    /* Muted */
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    
+    /* Accent - Orange */
+    --accent: 39 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* Destructive */
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 262 83.3% 57.8%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* UI */
+    --border: 0 0% 91.4%;
+    --input: 0 0% 91.4%;
+    --ring: 262 80% 50%;
     --radius: 0.75rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 262 83.3% 57.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 262 83.3% 57.8%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 262 83.3% 57.8%;
+    /* Dark Mode - Black backgrounds with glowing accents */
+    --background: 220 13% 9%;
+    --foreground: 0 0% 98%;
+    --card: 220 13% 13%;
+    --card-foreground: 0 0% 98%;
+    --popover: 220 13% 13%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 262 80% 55%;
+    --primary-foreground: 0 0% 5%;
+    --secondary: 39 100% 55%;
+    --secondary-foreground: 0 0% 5%;
+    --muted: 220 13% 20%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 39 100% 55%;
+    --accent-foreground: 0 0% 5%;
+    --destructive: 0 84% 40%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 20%;
+    --input: 220 13% 20%;
+    --ring: 262 80% 55%;
   }
 }
 
@@ -53,15 +78,32 @@
   * {
     @apply border-border;
   }
+  
   body {
     @apply bg-background text-foreground;
+    font-family: 'Poppins', sans-serif;
     min-height: 100vh;
     position: relative;
     margin: 0;
     padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold;
   }
 }
 
+/* Hero Gradient Background */
+.hero {
+  background: linear-gradient(180deg, rgba(102, 84, 245, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.dark .hero {
+  background: linear-gradient(180deg, rgba(102, 84, 245, 0.15) 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+/* Animations */
 @keyframes float {
   0%, 100% {
     transform: translateY(0) rotate(var(--tw-rotate, 0));
@@ -71,97 +113,140 @@
   }
 }
 
-@keyframes gradientSlide {
-  0% {
-    transform: translateX(-100%);
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  100% {
-    transform: translateX(100%);
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+@keyframes floatingShapes {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(102, 84, 245, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(102, 84, 245, 0.8);
+  }
+}
+
+/* Component Classes */
 @layer components {
+  /* Card Hover Effects */
   .card-hover {
-    @apply hover:shadow-lg transition-all duration-300 hover:border-primary/20 hover:scale-[1.02];
+    @apply hover:shadow-lg transition-all duration-300 hover:border-brand/20 hover:scale-[1.02];
   }
 
+  /* Glassmorphism */
+  .glassmorphism {
+    @apply bg-background/80 backdrop-blur-xs border border-white/10 dark:border-white/5;
+  }
+
+  .glassmorphism-subtle {
+    @apply bg-background/50 backdrop-blur border border-white/5 dark:border-white/10;
+  }
+
+  /* Gradient Shapes */
   .gradient-shape {
     @apply fixed pointer-events-none opacity-20;
     z-index: -1;
   }
 
-  .gradient-circle {
-    @apply rounded-full;
-    background: linear-gradient(45deg, #7E69AB, #9b87f5);
-  }
-
-  .gradient-blob {
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    background: linear-gradient(135deg, #9b87f5, #D6BCFA);
-  }
-
-  .gradient-wave {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-    background: linear-gradient(225deg, #6E59A5, #7E69AB);
-  }
-
-  /* Card styles with improved text contrast */
-  .card-content {
-    @apply text-white;
-  }
-
-  .card-title {
-    @apply text-white font-semibold;
-  }
-
-  .card-description {
-    @apply text-white/90;
-  }
-
-  /* Button styles with better contrast */
-  .btn-primary {
-    @apply bg-primary text-white hover:bg-primary/90 transition-colors;
+  /* Button Variants */
+  .btn-brand {
+    @apply bg-brand text-white hover:bg-brand/90 transition-all duration-300 hover:shadow-lg hover:shadow-brand/25;
   }
 
   .btn-secondary {
-    @apply bg-white/90 text-primary hover:bg-white/95 transition-colors;
+    @apply bg-secondary text-black hover:bg-secondary/90 transition-all duration-300 hover:shadow-lg hover:shadow-secondary/25;
   }
 
-  /* Navigation and menu text */
+  /* Section Headers */
+  .section-header {
+    @apply text-center mb-12;
+  }
+
+  .section-title {
+    @apply text-3xl lg:text-4xl font-bold mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-muted-foreground max-w-2xl mx-auto;
+  }
+
+  /* Brand Text */
+  .text-brand-accent {
+    @apply bg-gradient-to-r from-brand to-secondary bg-clip-text text-transparent;
+  }
+
+  /* Icon Badge */
+  .icon-badge {
+    @apply p-3 rounded-full bg-brand/10 flex items-center justify-center dark:bg-brand/20;
+  }
+
+  /* Transition Utilities */
+  .transition-smooth {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  /* Hover Effects */
+  .hover-lift {
+    @apply hover:shadow-lg hover:-translate-y-1 transition-smooth;
+  }
+
+  /* Navigation Text */
   .nav-text {
-    @apply text-white/90 hover:text-white transition-colors;
+    @apply text-foreground/80 hover:text-brand transition-colors duration-200;
   }
 
-  /* Form labels and text */
-  .form-label {
-    @apply text-white/90;
+  /* Glow Effect for Dark Mode */
+  .glow-effect {
+    @apply dark:shadow-lg dark:shadow-brand/20;
   }
 
-  .form-text {
-    @apply text-white;
+  .glow-orange {
+    @apply dark:shadow-lg dark:shadow-secondary/20;
   }
+}
 
-  /* Hero Section Styles */
-  .hero-gradient {
-    background: linear-gradient(135deg, #9333EA 0%, #C084FC 100%);
-  }
+/* Hero Section Specific */
+.hero-blur {
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(100px);
+}
 
-  .hero-button {
-    transition: all 0.2s ease-in-out;
-  }
+.step-button-shadow {
+  box-shadow: 0 2px 4px rgba(102, 84, 245, 0.1);
+}
 
-  .hero-button:hover {
-    transform: translateY(-1px);
+/* Backdrop Blur Variants */
+@supports (backdrop-filter: blur(1px)) {
+  .backdrop-blur-xs {
+    backdrop-filter: blur(2px);
   }
+}
 
-  /* Custom Background Blur */
-  .hero-blur {
-    backdrop-filter: blur(100px);
-    -webkit-backdrop-filter: blur(100px);
-  }
+/* Dark Mode Specific Enhancements */
+.dark {
+  color-scheme: dark;
+}
 
-  /* Custom Shadow for Step Buttons */
-  .step-button-shadow {
-    box-shadow: 0 2px 4px rgba(147, 51, 234, 0.1);
-  }
+.dark section {
+  @apply transition-colors duration-300;
+}
+
+.dark .border {
+  @apply border-white/5;
 }

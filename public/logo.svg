@@ -1,44 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="600" height="120" viewBox="0 0 600 120" version="1.1" xmlns="http://www.w3.org/2000/svg">
-  <!-- Gradient definitions -->
+<svg width="200" height="80" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Define Poppins font -->
   <defs>
-    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#7C3AED"/>
-      <stop offset="50%" style="stop-color:#9333EA"/>
-      <stop offset="100%" style="stop-color:#C026D3"/>
-    </linearGradient>
-    <linearGradient id="arrayGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#7C3AED"/>
-      <stop offset="100%" style="stop-color:#C026D3"/>
-    </linearGradient>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+    </style>
   </defs>
-
-  <!-- Array symbol group - made more compact -->
-  <g transform="translate(10, 10)">
-    <!-- Bracket left -->
-    <path d="M0,0 L15,0 Q30,0 30,15 L30,85 Q30,100 15,100 L0,100" 
-          fill="none" stroke="url(#arrayGradient)" stroke-width="6"/>
-    
-    <!-- Array elements - made narrower -->
-    <g transform="translate(40, 10)">
-      <!-- Element 1 -->
-      <rect x="0" y="0" width="25" height="80" rx="4" 
-            fill="url(#arrayGradient)" opacity="0.8"/>
-      <!-- Element 2 -->
-      <rect x="35" y="0" width="25" height="80" rx="4" 
-            fill="url(#arrayGradient)" opacity="0.6"/>
-      <!-- Element 3 -->
-      <rect x="70" y="0" width="25" height="80" rx="4" 
-            fill="url(#arrayGradient)" opacity="0.4"/>
-    </g>
-
-    <!-- Bracket right -->
-    <path d="M145,0 L130,0 Q115,0 115,15 L115,85 Q115,100 130,100 L145,100" 
-          fill="none" stroke="url(#arrayGradient)" stroke-width="6"/>
-  </g>
-
-  <!-- Text "Prompt Array" - adjusted position -->
-  <text x="170" y="75" font-family="Arial, sans-serif" font-size="60" font-weight="bold" fill="url(#textGradient)">
-    Prompt Array
+  
+  <!-- "Prompt" in Brand Blue -->
+  <text x="10" y="55" font-family="Poppins, sans-serif" font-size="48" font-weight="700" fill="#6654f5">
+    Prompt
+  </text>
+  
+  <!-- "Array" in Brand Orange -->
+  <text x="110" y="55" font-family="Poppins, sans-serif" font-size="48" font-weight="700" fill="#FF7F00">
+    Array
+  </text>
+  
+  <!-- Subtitle: "BY ENTERPRISE DNA" -->
+  <text x="10" y="72" font-family="Poppins, sans-serif" font-size="10" font-weight="600" fill="#999999" letter-spacing="2">
+    BY ENTERPRISE DNA
   </text>
 </svg>

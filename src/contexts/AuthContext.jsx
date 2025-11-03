@@ -80,17 +80,6 @@ export const AuthProvider = ({ children }) => {
     try {
       console.log('Starting sign-up process for:', email);
       
-      // Check if user already exists
-      const { data: existingUser } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (existingUser?.user) {
-        console.log('User already exists:', existingUser);
-        throw new Error('This email is already registered. Please sign in instead.');
-      }
-
       // Proceed with sign up
       const { data, error } = await supabase.auth.signUp({
         email,

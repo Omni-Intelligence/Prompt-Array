@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(supabase start:*)",
+      "Bash(supabase stop:*)",
+      "Bash(npx supabase:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

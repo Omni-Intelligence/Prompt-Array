@@ -74,4 +74,4 @@ const PromptDetailCard = ({ prompt, onCopy, onEdit, onDelete }) => {
   );
 };
 
-export default PromptDetailCard;
+export { PromptDetailCard };

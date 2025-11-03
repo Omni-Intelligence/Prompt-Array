@@ -9,6 +9,7 @@ export const getGroups = async () => {
       throw new Error('Authentication required');
     }
 
+    // Get groups where user is the creator OR a member
     const { data, error } = await supabase
       .from('groups')
       .select(`
@@ -16,9 +17,10 @@ export const getGroups = async () => {
         name,
         description,
         created_at,
-        updated_at
+        updated_at,
+        created_by
       `)
-      .eq('user_id', user.id)
+      .eq('created_by', user.id)
       .order('created_at', { ascending: false });
 
     if (error) {
@@ -49,7 +51,7 @@ export const getGroupPrompts = async (groupId) => {
       .from('groups')
       .select('id')
       .eq('id', groupId)
-      .eq('user_id', user.id);
+      .eq('created_by', user.id);
 
     if (groupError || !groups || groups.length === 0) {
       console.error('Group not found or access denied:', groupError);
@@ -95,7 +97,7 @@ export const createGroup = async ({ name, description }) => {
       .insert([{
         name,
         description,
-        user_id: user.id
+        created_by: user.id
       }])
       .select()
       .single();
@@ -129,7 +131,7 @@ export const updateGroup = async (groupId, { name, description }) => {
       .from('groups')
       .update({ name, description })
       .eq('id', groupId)
-      .eq('user_id', user.id)
+      .eq('created_by', user.id)
       .select();
 
     if (error) throw error;
@@ -152,7 +154,7 @@ export const deleteGroup = async (groupId) => {
       .from('groups')
       .delete()
       .eq('id', groupId)
-      .eq('user_id', user.id);
+      .eq('created_by', user.id);
 
     if (error) throw error;
   } catch (error) {

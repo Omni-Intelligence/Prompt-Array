@@ -55,4 +55,4 @@ const GroupsHeader = ({ onCreateGroup, onCreateFolder }) => {
   );
 };
 
-export default GroupsHeader;
+export { GroupsHeader };

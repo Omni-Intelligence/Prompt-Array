@@ -1,104 +1,105 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { Github, Twitter, Linkedin, Mail } from 'lucide-react';
+import { Logo } from './Logo';
+
+const footerLinks = {
+  product: [
+    { label: 'Features', href: '#features' },
+    { label: 'How It Works', href: '#how-it-works' },
+    { label: 'Pricing', href: '/pricing' },
+  ],
+};
+
+const socialLinks = [
+  { icon: Twitter, href: '#', label: 'Twitter' },
+  { icon: Github, href: '#', label: 'GitHub' },
+  { icon: Linkedin, href: '#', label: 'LinkedIn' },
+  { icon: Mail, href: '#', label: 'Email' },
+];
 
 export function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="border-t border-gray-200 dark:border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand */}
-          <div className="col-span-1">
-            <span className="font-mono text-xl font-semibold bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent">
-              Prompt[Array]
-            </span>
-            <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
-              Organize, create, and master your AI prompts
+    <footer className="border-t bg-background dark:bg-muted/5">
+      <div className="container max-w-7xl mx-auto px-4">
+        {/* Main Footer Content */}
+        <div className="py-16 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+          {/* Brand Section */}
+          <div className="md:col-span-1">
+            <Link to="/" className="inline-block hover:opacity-80 transition-opacity mb-4">
+              <Logo size="default" showSubtitle={false} />
+            </Link>
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              The ultimate platform for creating, organizing, and sharing AI prompts.
             </p>
           </div>
 
-          {/* Product */}
-          <div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Product</h3>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <Link to="/signup" className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
-                  Get Started
-                </Link>
-              </li>
-              <li>
-                <Link to="/pricing" className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
-                  Pricing
-                </Link>
-              </li>
-              <li>
-                <Link to="/app/dashboard" className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
-                  Dashboard
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {/* Links Section */}
+          <div className="md:col-span-2 grid grid-cols-2 md:grid-cols-3 gap-8">
+            {/* Product */}
+            <div>
+              <h4 className="font-semibold text-foreground text-sm mb-4">Product</h4>
+              <ul className="space-y-3">
+                {footerLinks.product.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Resources */}
-          <div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Resources</h3>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <Link to="/app/techniques" className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
-                  Techniques
-                </Link>
-              </li>
-              <li>
-                <Link to="/app/templates" className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
-                  Templates
-                </Link>
-              </li>
-              <li>
-                <Link to="/app/chains" className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
-                  Prompt Chains
-                </Link>
-              </li>
-            </ul>
-          </div>
+            {/* Resources */}
+            <div>
+              <h4 className="font-semibold text-foreground text-sm mb-4">Resources</h4>
+              <ul className="space-y-3">
+                <li>
+                  <span className="text-sm text-muted-foreground italic">Coming soon</span>
+                </li>
+              </ul>
+            </div>
 
-          {/* Account */}
-          <div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Account</h3>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <Link to="/signin" className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
-                  Sign In
-                </Link>
-              </li>
-              <li>
-                <Link to="/signup" className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
-                  Create Account
-                </Link>
-              </li>
-              <li>
-                <Link to="/reset-password" className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
-                  Reset Password
-                </Link>
-              </li>
-            </ul>
+            {/* Company */}
+            <div>
+              <h4 className="font-semibold text-foreground text-sm mb-4">Legal</h4>
+              <ul className="space-y-3">
+                <li>
+                  <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200">Privacy Policy</a>
+                </li>
+                <li>
+                  <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200">Terms of Service</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row justify-between items-center">
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            &copy; {new Date().getFullYear()} PromptArray. All rights reserved.
+        {/* Bottom Bar */}
+        <div className="border-t border-brand/10 py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <p className="text-xs text-muted-foreground">
+            © {currentYear} Prompt Array. All rights reserved.
           </p>
-          <div className="flex items-center space-x-6 mt-4 sm:mt-0">
-            <Link to="/app/privacy" className="text-sm text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
-              Privacy
-            </Link>
-            <Link to="/app/terms" className="text-sm text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
-              Terms
-            </Link>
-            <Link
-              to="/why-free"
-              className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300"
-            >
-              Why Free?
-            </Link>
+          
+          <div className="flex items-center gap-4">
+            {socialLinks.map((social) => {
+              const Icon = social.icon;
+              return (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  aria-label={social.label}
+                  className="text-muted-foreground hover:text-brand transition-colors duration-200"
+                  title={social.label}
+                >
+                  <Icon className="w-4 h-4" />
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>

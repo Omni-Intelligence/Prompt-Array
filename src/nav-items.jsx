@@ -14,19 +14,12 @@ import {
   HelpCircleIcon
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import Library from "./pages/Library";
-import Groups from "./pages/Groups";
-import Favourites from "./pages/Favourites";
-import Templates from "./pages/Templates";
-import Batches from "./pages/Batches";
-import Community from "./pages/Community";
-import Chains from "./pages/Chains";
-import Index from "./pages/Index";
-import Dashboard from "./pages/Dashboard";
-import Techniques from "./pages/Techniques";
-import WhyFree from "./pages/WhyFree";
+import { 
+  Library, Groups, Favorites, Templates, Batches,
+  Community, Chains, Dashboard, Techniques, WhyFree
+} from "@/pages";
 
-export const navItems = [
+export const getNavItems = () => [
   {
     title: "Home",
     to: "dashboard",
@@ -66,10 +59,10 @@ export const navItems = [
     color: "from-orange-500 to-red-500"
   },
   {
-    title: "Favourites",
+    title: "Favorites",
     to: "favourites",
     icon: <StarIcon className="h-4 w-4" />,
-    component: Favourites,
+    component: Favorites,
     color: "from-yellow-500 to-orange-500"
   },
   {
